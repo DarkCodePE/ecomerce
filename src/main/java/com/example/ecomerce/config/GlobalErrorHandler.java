@@ -2,6 +2,7 @@ package com.example.ecomerce.config;
 
 import com.example.ecomerce.exception.ErrorMessageResponse;
 import com.example.ecomerce.exception.InvalidTokenRequestException;
+import com.example.ecomerce.exception.NoSuchElementFoundException;
 import com.example.ecomerce.exception.TokenRefreshException;
 import com.example.ecomerce.exception.UserLoginException;
 import com.example.ecomerce.exception.UserLogoutException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalErrorHandler {
+
   private final MessageSource messageSource;
 
   @Autowired
@@ -55,4 +57,11 @@ public class GlobalErrorHandler {
     return new ErrorMessageResponse<>(ErrorTypes.VALIDATION, message);
   }
 
+  @ExceptionHandler(NoSuchElementFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ErrorMessageResponse<String> handleNoSuchElementFoundException(NoSuchElementFoundException e) {
+    String message =
+        messageSource.getMessage(e.getMessage(), e.getParams(), LocaleContextHolder.getLocale());
+    return new ErrorMessageResponse<>(ErrorTypes.VALIDATION, message);
+  }
 }
