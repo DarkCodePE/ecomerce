@@ -3,26 +3,27 @@ package com.example.ecomerce.model;
 import com.example.ecomerce.model.token.RefreshToken;
 import javax.persistence.*;
 
-@Entity(name = "USER_DEVICE_ID")
+@Entity(name = "user_device")
+@Table(name="user_devices")
 public class UserDevice {
   @Id
-  @Column(name = "USER_DEVICE_ID")
+  @Column(name = "user_device_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_device_seq")
   @SequenceGenerator(name = "user_device_seq", allocationSize = 1)
   private Long id;
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "USER_ID", nullable = false)
+  @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-  @Column(name = "DEVICE_TYPE")
+  @Column(name = "device_type")
   @Enumerated(value = EnumType.STRING)
   private DeviceType deviceType;
 
-  @Column(name = "NOTIFICATION_TOKEN")
+  @Column(name = "notification_type")
   private String notificationToken;
 
-  @Column(name = "DEVICE_ID", nullable = false)
+  @Column(name = "device_id", nullable = false)
   private String deviceId;
 
   @OneToOne(mappedBy = "userDevice", orphanRemoval = true,

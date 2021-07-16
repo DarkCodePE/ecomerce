@@ -21,17 +21,26 @@ public class DeviceInfo {
       allowableValues = "Non empty string")
   private String deviceSystem;
 
-  @NotBlank(message = "Device notification token can be null but not blank")
+  @NotNull(message = "Device notification token can not null")
   @ApiModelProperty(value = "Device notification id", dataType = "string", allowableValues = "Non empty string")
   private String notificationToken;
+
+  @NotBlank(message = "Specify whether Device has to be registered enable refresh token")
+  @ApiModelProperty(value = "enabled refresh token", dataType = "string",
+      allowableValues = "Non empty "
+      + "string")
+  private Boolean isRefreshActive;
 
   public DeviceInfo() {
   }
 
-  public DeviceInfo(String deviceId, DeviceType deviceType, String notificationToken) {
+  public DeviceInfo(String deviceId, DeviceType deviceType, String deviceSystem,
+                    String notificationToken, Boolean isRefreshActive) {
     this.deviceId = deviceId;
     this.deviceType = deviceType;
+    this.deviceSystem = deviceSystem;
     this.notificationToken = notificationToken;
+    this.isRefreshActive = isRefreshActive;
   }
 
   public String getDeviceId() {
@@ -64,5 +73,13 @@ public class DeviceInfo {
 
   public void setDeviceSystem(String deviceSystem) {
     this.deviceSystem = deviceSystem;
+  }
+
+  public Boolean getRefreshActive() {
+    return isRefreshActive;
+  }
+
+  public void setRefreshActive(Boolean refreshActive) {
+    isRefreshActive = refreshActive;
   }
 }

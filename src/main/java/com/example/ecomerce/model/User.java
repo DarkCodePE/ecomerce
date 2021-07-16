@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity(name = "USER")
+@Entity(name = "user")
 @Table(name="users")
 public class User {
     @Id
-    @Column(name = "USER_ID")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", allocationSize = 1)
     //@GeneratedValue(strategy = GenerationType.AUTO)

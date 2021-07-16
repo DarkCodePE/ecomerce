@@ -36,7 +36,7 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
    */
   public Product createProduct(ProductDTO productDTO){
     ProductCategory productCategory =
-            productCategoryRepository.findByName(productDTO.getProductCategory()).orElseThrow(() -> new NoSuchElementFoundException("item.absent", productDTO.getProductCategory()));
+            productCategoryRepository.findById(productDTO.getProductCategoryId()).orElseThrow(() -> new NoSuchElementFoundException("item.absent", productDTO.getProductCategoryId()));
     return productMapper.map(productDTO, productCategory);
   }
   /**

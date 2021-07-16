@@ -6,6 +6,7 @@ import com.example.ecomerce.mapper.ProductMapper;
 import com.example.ecomerce.model.Product;
 import com.example.ecomerce.model.ProductCategory;
 import com.example.ecomerce.model.payload.PagedResponseDTO;
+import com.example.ecomerce.repository.ProductCategoryRepository;
 import com.example.ecomerce.repository.ProductRepository;
 import com.example.ecomerce.search.CustomRsqlVisitor;
 import com.example.ecomerce.services.ProductService;
@@ -101,4 +102,5 @@ public class ProductController {
     ProductDTO productCreateDto = productService.createProductDTO(product);
     return new ResponseEntity<>(productCreateDto, HttpStatus.CREATED);
   }
+
 }

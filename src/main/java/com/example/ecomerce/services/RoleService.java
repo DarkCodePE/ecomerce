@@ -12,6 +12,7 @@ public class RoleService extends BaseService<Role, Long, RoleRepository> {
   /**
    * Find all roles from the database
    */
+  @Override
   public List<Role> findAll() {
     return repository.findAll();
   }

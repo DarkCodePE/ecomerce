@@ -199,8 +199,7 @@ public class AuthService {
     RefreshToken refreshToken = refreshTokenService.createRefreshToken();
     UserDevice userDevice =
         userDeviceService.createUserDevice(loginRequest.getDeviceInfo(), currentUser, refreshToken);
-    log.info("USER_DEVICE_DATA_CURRENT: {}", currentUser.getEmail());
-    //userDevice.setRefreshToken(refreshToken);
+    userDevice.setRefreshActive(true);
     refreshToken.setUserDevice(userDevice);
     log.info("REFRESH_TOKEN: {}", refreshToken.getToken());
     refreshToken = refreshTokenService.save(refreshToken);

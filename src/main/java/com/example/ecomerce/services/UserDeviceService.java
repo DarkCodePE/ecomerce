@@ -62,7 +62,7 @@ public class UserDeviceService extends BaseService<UserDevice, Long, UserDeviceR
         .orElseThrow(() -> new TokenRefreshException("error.device.token.notfound"));
 
     if (!Boolean.TRUE.equals(userDevice.getRefreshActive())) {
-      throw new TokenRefreshException("error.device.token.blocked");
+      throw new TokenRefreshException("error.device.token.blocked", userDevice.getRefreshToken());
     }
   }
 }

@@ -15,7 +15,13 @@
 	<description>ecomerce for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<spring-boot.version>2.5.0</spring-boot.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
+		<liquibase-core.version>4.2.0</liquibase-core.version>
+		<liquibase-maven-plugin.version>4.2.0</liquibase-maven-plugin.version>
+		<liquibase-hibernate5.version>4.1.1</liquibase-hibernate5.version>
 	</properties>
+
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -33,7 +39,9 @@
 			</properties>
 		</profile>
 	</profiles>
+
 	<dependencies>
+		<!-- Core -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -63,6 +71,11 @@
 			<artifactId>freemarker</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -81,7 +94,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.10</version>
+			<version>1.18.20</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -119,6 +133,16 @@
 			<version>2.9.2</version>
 		</dependency>
 		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase-core.version}</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-maven-plugin</artifactId>
+			<version>4.4.1</version>
+		</dependency>-->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -155,7 +179,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.10</version>
+							<version>1.18.20</version>
 						</path>
 						<path>
 							<groupId>org.projectlombok</groupId>
@@ -165,6 +189,36 @@
 						<!-- other annotation processors -->
 					</annotationProcessorPaths>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>${liquibase-maven-plugin.version}</version>
+				<configuration>
+					<propertyFile>liquibase.properties</propertyFile>
+					<changeLogFile>db/changelog/db.changelog-master.yaml</changeLogFile>
+					<outputChangeLogFile>src/main/resources/db/db.changelog-output.xml</outputChangeLogFile>
+					<diffChangeLogFile>src/main/resources/db/changelog/db.changelog-diff.xml</diffChangeLogFile>
+					<logging>info</logging>
+				</configuration>
+				<!-- Liquibase dependencies-->
+				<dependencies>
+					<dependency>
+						<groupId>org.liquibase</groupId>
+						<artifactId>liquibase-core</artifactId>
+						<version>${liquibase-core.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.liquibase.ext</groupId>
+						<artifactId>liquibase-hibernate5</artifactId>
+						<version>${liquibase-hibernate5.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-data-jpa</artifactId>
+						<version>${spring-boot.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

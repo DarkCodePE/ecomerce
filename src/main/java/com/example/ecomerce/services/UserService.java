@@ -86,6 +86,7 @@ public class UserService extends BaseService<User, Long, UserRepository> {
     if (!Boolean.TRUE.equals(isToBeMadeAdmin)) {
       newUserRoles.removeIf(Role::isAdminRole);
     }
+      log.info("Setting user roles: " + roleService.findAll());
     log.info("Setting user roles: " + newUserRoles);
     return newUserRoles;
   }

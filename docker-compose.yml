@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data:rw
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_DB: market
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: orlando123
+    networks:
+      - ecommerce-network
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "16543:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: nexuscode25@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: $$Anprog1
+    depends_on:
+      - db
+    networks:
+      - ecommerce-network
+  app:
+    build:
+      context: ""
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/market
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=orlando123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    networks:
+      - ecommerce-network
+volumes:
+  postgres:
+networks:
+  ecommerce-network:
+    driver: bridge

@@ -1,5 +1,6 @@
 package com.example.ecomerce.model;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,14 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.NaturalId;
 
 
-@Entity
+@Entity(name = "product")
+@Table(name="products")
 public class Product {
   @Id
-  @Column(name = "PRODUCT_ID")
+  @Column(name = "product_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
   @SequenceGenerator(name = "product_seq", allocationSize = 1)
   private Long id;
@@ -34,10 +37,10 @@ public class Product {
   private ProductCategory category;
 
   @Column(name = "SUMMARY")
+  @NotBlank(message = "Sort summary can not be blank")
   private String summary;
 
   @Column(name = "SORT_SUMMARY")
-  @NotBlank(message = "Sort summary can not be blank")
   private String sortSummary;
 
   @Column(name = "PRICE")
@@ -67,7 +70,6 @@ public class Product {
     this.status = status;
     this.image = image;
   }
-
 
   public Long getId() {
     return id;
@@ -139,5 +141,22 @@ public class Product {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Product product = (Product) o;
+    return Objects.equals(id, product.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }

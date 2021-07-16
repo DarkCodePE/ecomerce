@@ -12,16 +12,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
-@Entity(name = "ROLE")
+@Entity
+@Table(name="roles")
 public class Role {
   @Id
-  @Column(name = "ROLE_ID")
+  @Column(name = "role_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "ROLE_NAME")
+  @Column(name = "role_name")
   @Enumerated(EnumType.STRING)
   @NaturalId
   private RoleName role;

@@ -64,4 +64,5 @@ public class GlobalErrorHandler {
         messageSource.getMessage(e.getMessage(), e.getParams(), LocaleContextHolder.getLocale());
     return new ErrorMessageResponse<>(ErrorTypes.VALIDATION, message);
   }
+
 }

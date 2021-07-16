@@ -15,26 +15,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
-@Entity(name = "EMAIL_VERIFICATION_TOKEN")
+@Entity(name = "email_verification_token")
 public class EmailVerificationToken{
   @Id
-  @Column(name = "TOKEN_ID")
+  @Column(name = "token_id")
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "email_token_seq")
   @SequenceGenerator(name = "email_token_seq", allocationSize = 1)
   private Long id;
 
-  @Column(name = "TOKEN", nullable = false, unique = true)
+  @Column(name = "token", nullable = false, unique = true)
   private String token;
 
   @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-  @JoinColumn(nullable = false, name = "USER_ID")
+  @JoinColumn(nullable = false, name = "user_id")
   private User user;
 
-  @Column(name = "TOKEN_STATUS")
+  @Column(name = "token_status")
   @Enumerated(EnumType.STRING)
   private TokenStatus tokenStatus;
 
-  @Column(name = "EXPIRY_DT", nullable = false)
+  @Column(name = "expiry_dt", nullable = false)
   private Instant expiryDate;
   public EmailVerificationToken() {
   }

@@ -93,9 +93,9 @@ public class AuthController {
     Authentication authentication = authService.authenticateUser(loginRequest)
         .orElseThrow(() -> new UserLoginException("error.user.login", "Couldn't login "
             + "user ", loginRequest.getEmail()));
-    log.info("Logged in User returned [APIxxx]: " + authentication.getName());
     CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-    log.info("Logged in User returned [API]: " + customUserDetails.getUsername());
+    log.info("Logged in User returned [API]: " + customUserDetails.getAuthorities().toString());
+    log.info("Logged in User returned [API]: " + customUserDetails.getAuthorities());
     SecurityContextHolder.getContext().setAuthentication(authentication);
     return authService.createAndPersistRefreshTokenForDevice(authentication, loginRequest)
         .map(RefreshToken::getToken)
@@ -232,7 +232,7 @@ public class AuthController {
       "updated response tokens")
   public ResponseEntity<JwtAuthenticationResponse> refreshJwtToken(@ApiParam(value = "The TokenRefreshRequest "
 + "payload") @Valid @RequestBody TokenRefreshRequest tokenRefreshRequest) {
-
+    log.info("REFRESH_TOKEN:{}", tokenRefreshRequest.getRefreshToken());
     return authService.refreshJwtToken(tokenRefreshRequest)
         .map(updatedToken -> {
           String refreshToken = tokenRefreshRequest.getRefreshToken();

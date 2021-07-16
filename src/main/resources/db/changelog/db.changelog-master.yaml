@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/db.changelog-output.xml
+  - include:
+      file: db/changelog/db.changelog-diff.xml
