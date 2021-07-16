@@ -1,0 +1,514 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="nexus (generated)" id="1626456842286-1">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+            </column>
+            <column name="role_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626456842286-2">
+        <createTable tableName="users">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+            <column name="is_email_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider" type="VARCHAR(255)"/>
+            <column name="provider_id" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626456842286-3">
+        <addUniqueConstraint columnNames="role_name" constraintName="uk_epk9im9l9q67xmwi4hbed25do" tableName="role"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626456842286-4">
+        <addUniqueConstraint columnNames="email" constraintName="uk_6dotkott2kjsp8vw4d0m25fb7" tableName="users"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626456842286-5">
+        <addUniqueConstraint columnNames="username" constraintName="uk_r43af9ap4edm43mmtq01oddj6" tableName="users"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-1">
+        <createTable tableName="email_verification_token">
+            <column name="token_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="email_verification_token_pkey"/>
+            </column>
+            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_status" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-2">
+        <createTable tableName="product">
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT4"/>
+            <column name="sku" type="VARCHAR(255)"/>
+            <column name="sort_summary" type="VARCHAR(255)"/>
+            <column name="status" type="BOOLEAN"/>
+            <column name="summary" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="category_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-3">
+        <createTable tableName="product_category">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_category_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-4">
+        <createTable tableName="password_reset_token">
+            <column name="token_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="password_reset_token_pkey"/>
+            </column>
+            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-5">
+        <createTable tableName="users">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+            <column name="is_email_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider" type="VARCHAR(255)"/>
+            <column name="provider_id" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-6">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+            </column>
+            <column name="role_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-7">
+        <createTable tableName="user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_authority_pkey"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_authority_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-8">
+        <createTable tableName="user_device_id">
+            <column name="user_device_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_device_id_pkey"/>
+            </column>
+            <column name="device_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="is_refresh_active" type="BOOLEAN"/>
+            <column name="notification_token" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-9">
+        <createTable tableName="refresh_token">
+            <column name="token_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="refresh_token_pkey"/>
+            </column>
+            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refresh_count" type="BIGINT"/>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_device_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-10">
+        <createIndex indexName="uk_idu2ippaks8bn6vcsq62khvdu" tableName="email_verification_token" unique="true">
+            <column name="token"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-11">
+        <addUniqueConstraint columnNames="sku" constraintName="uk_q1mafxn973ldq80m1irp3mpvq" tableName="product"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-12">
+        <createIndex indexName="uk_qka6vxqdy1dprtqnx9trdd47c" tableName="product" unique="true">
+            <column name="title"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-13">
+        <createIndex indexName="uk_p4ksw3dweftlkig5mtd3onr9a" tableName="password_reset_token" unique="true">
+            <column name="token_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-14">
+        <addUniqueConstraint columnNames="email" constraintName="uk_6dotkott2kjsp8vw4d0m25fb7" tableName="users"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-15">
+        <addUniqueConstraint columnNames="username" constraintName="uk_r43af9ap4edm43mmtq01oddj6" tableName="users"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-16">
+        <addUniqueConstraint columnNames="role_name" constraintName="uk_epk9im9l9q67xmwi4hbed25do" tableName="role"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-17">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_authority" constraintName="fkash3fy9hdayq3o73fir11n3th" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-18">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fkhi46vu7680y1hwvmnnuh4cybx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-19">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_device_id" constraintName="fkfgqvlxm4690pgso8t9cm6bc5l" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-20">
+        <addForeignKeyConstraint baseColumnNames="user_device_id" baseTableName="refresh_token" constraintName="fkj96ic7ojqb1d3qaioveqkp18r" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_device_id" referencedTableName="user_device_id" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-21">
+        <createIndex indexName="uk_8ogx3ejsbfbf2xsgl4758otrm" tableName="refresh_token" unique="true">
+            <column name="user_device_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-22">
+        <createIndex indexName="uk_r4k4edos30bx9neoq81mdvwph" tableName="refresh_token" unique="true">
+            <column name="token"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-23">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="email_verification_token" constraintName="fkknax5in7pcatm2uf9uyple35x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-24">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product" constraintName="fk5cypb0k23bovo3rn1a5jqs6j4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_category" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-25">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="password_reset_token" constraintName="fk83nsrttkwkb6ym0anu051mtxn" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-26">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="email_token_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-27">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-28">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="product_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-29">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="pwd_reset_token_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-30">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="refresh_token_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-31">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="user_device_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458156223-32">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="user_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-1">
+        <createTable tableName="email_verification_token">
+            <column name="token_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="email_verification_token_pkey"/>
+            </column>
+            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_status" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-2">
+        <createTable tableName="product">
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT4"/>
+            <column name="sku" type="VARCHAR(255)"/>
+            <column name="sort_summary" type="VARCHAR(255)"/>
+            <column name="status" type="BOOLEAN"/>
+            <column name="summary" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="category_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-3">
+        <createTable tableName="product_category">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_category_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-4">
+        <createTable tableName="password_reset_token">
+            <column name="token_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="password_reset_token_pkey"/>
+            </column>
+            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-5">
+        <createTable tableName="users">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+            <column name="is_email_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider" type="VARCHAR(255)"/>
+            <column name="provider_id" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-6">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+            </column>
+            <column name="role_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-7">
+        <createTable tableName="user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_authority_pkey"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_authority_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-8">
+        <createTable tableName="user_device_id">
+            <column name="user_device_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_device_id_pkey"/>
+            </column>
+            <column name="device_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="is_refresh_active" type="BOOLEAN"/>
+            <column name="notification_token" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-9">
+        <createTable tableName="refresh_token">
+            <column name="token_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="refresh_token_pkey"/>
+            </column>
+            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refresh_count" type="BIGINT"/>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_device_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-10">
+        <createIndex indexName="uk_idu2ippaks8bn6vcsq62khvdu" tableName="email_verification_token" unique="true">
+            <column name="token"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-11">
+        <addUniqueConstraint columnNames="sku" constraintName="uk_q1mafxn973ldq80m1irp3mpvq" tableName="product"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-12">
+        <createIndex indexName="uk_qka6vxqdy1dprtqnx9trdd47c" tableName="product" unique="true">
+            <column name="title"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-13">
+        <createIndex indexName="uk_p4ksw3dweftlkig5mtd3onr9a" tableName="password_reset_token" unique="true">
+            <column name="token_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-14">
+        <addUniqueConstraint columnNames="email" constraintName="uk_6dotkott2kjsp8vw4d0m25fb7" tableName="users"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-15">
+        <addUniqueConstraint columnNames="username" constraintName="uk_r43af9ap4edm43mmtq01oddj6" tableName="users"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-16">
+        <addUniqueConstraint columnNames="role_name" constraintName="uk_epk9im9l9q67xmwi4hbed25do" tableName="role"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-17">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_authority" constraintName="fkash3fy9hdayq3o73fir11n3th" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-18">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fkhi46vu7680y1hwvmnnuh4cybx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-19">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_device_id" constraintName="fkfgqvlxm4690pgso8t9cm6bc5l" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-20">
+        <addForeignKeyConstraint baseColumnNames="user_device_id" baseTableName="refresh_token" constraintName="fkj96ic7ojqb1d3qaioveqkp18r" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_device_id" referencedTableName="user_device_id" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-21">
+        <createIndex indexName="uk_8ogx3ejsbfbf2xsgl4758otrm" tableName="refresh_token" unique="true">
+            <column name="user_device_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-22">
+        <createIndex indexName="uk_r4k4edos30bx9neoq81mdvwph" tableName="refresh_token" unique="true">
+            <column name="token"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-23">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="email_verification_token" constraintName="fkknax5in7pcatm2uf9uyple35x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-24">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product" constraintName="fk5cypb0k23bovo3rn1a5jqs6j4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_category" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-25">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="password_reset_token" constraintName="fk83nsrttkwkb6ym0anu051mtxn" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-26">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="email_token_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-27">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-28">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="product_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-29">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="pwd_reset_token_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-30">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="refresh_token_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-31">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="user_device_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458632553-32">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="user_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458887732-1">
+        <insert tableName="email_verification_token">
+            <column name="token_id" valueNumeric="1"/>
+            <column name="expiry_dt" valueDate="2021-07-07T14:52:54.517"/>
+            <column name="token" value="bb779825-df51-4864-a64b-f6bc79f3469a"/>
+            <column name="token_status" value="STATUS_CONFIRMED"/>
+            <column name="user_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458887732-2">
+        <insert tableName="users">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="email" value="nexuscode25@gmail.com"/>
+            <column name="first_name" value="orlando"/>
+            <column name="image_url"/>
+            <column name="is_email_verified" valueBoolean="true"/>
+            <column name="last_name" value="kuan"/>
+            <column name="name"/>
+            <column name="password" value="$2a$10$YZaaXxKVkc.1Iqb6oHOERexyLk8tOW78F1rIQPqHxikYzqdgrjd3O"/>
+            <column name="provider"/>
+            <column name="provider_id"/>
+            <column name="username" value="orlando"/>
+        </insert>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458887732-3">
+        <insert tableName="role">
+            <column name="role_id" valueNumeric="2"/>
+            <column name="role_name" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="role">
+            <column name="role_id" valueNumeric="3"/>
+            <column name="role_name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458887732-4">
+        <insert tableName="user_device_id">
+            <column name="user_device_id" valueNumeric="1"/>
+            <column name="device_id" value="1"/>
+            <column name="device_type" value="DEVICE_TYPE_DESKTOP"/>
+            <column name="is_refresh_active" valueBoolean="true"/>
+            <column name="notification_token" value="H9JQ8X"/>
+            <column name="user_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="nexus (generated)" id="1626458887732-5">
+        <insert tableName="refresh_token">
+            <column name="token_id" valueNumeric="1"/>
+            <column name="expiry_dt" valueDate="2021-08-06T13:53:39.556"/>
+            <column name="refresh_count" valueNumeric="0"/>
+            <column name="token" value="b5c3d2d0-be0a-47cb-bcae-c964dded59ae"/>
+            <column name="user_device_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
