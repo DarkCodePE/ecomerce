@@ -20,6 +20,9 @@
 		<liquibase-core.version>4.2.0</liquibase-core.version>
 		<liquibase-maven-plugin.version>4.2.0</liquibase-maven-plugin.version>
 		<liquibase-hibernate5.version>4.1.1</liquibase-hibernate5.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
+		<javassist.version>3.27.0-GA</javassist.version>
+		<jaxb-api.version>2.3.1</jaxb-api.version>
 	</properties>
 
 	<profiles>
@@ -196,7 +199,7 @@
 				<version>${liquibase-maven-plugin.version}</version>
 				<configuration>
 					<propertyFile>liquibase.properties</propertyFile>
-					<changeLogFile>db/changelog/db.changelog-master.yaml</changeLogFile>
+					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
 					<outputChangeLogFile>src/main/resources/db/db.changelog-output.xml</outputChangeLogFile>
 					<diffChangeLogFile>src/main/resources/db/changelog/db.changelog-diff.xml</diffChangeLogFile>
 					<logging>info</logging>
@@ -217,6 +220,21 @@
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-starter-data-jpa</artifactId>
 						<version>${spring-boot.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>javax.validation</groupId>
+						<artifactId>validation-api</artifactId>
+						<version>${validation-api.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.javassist</groupId>
+						<artifactId>javassist</artifactId>
+						<version>${javassist.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>javax.xml.bind</groupId>
+						<artifactId>jaxb-api</artifactId>
+						<version>${jaxb-api.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>

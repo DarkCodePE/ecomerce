@@ -51,6 +51,7 @@ public class ProductController {
   private CustomMessage customMessage;
 
   @GetMapping
+  @PreAuthorize("hasRole('ROLE_USER')")
   public ResponseEntity<PagedResponseDTO<Object>> getProducts(
       @RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
       @RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize,

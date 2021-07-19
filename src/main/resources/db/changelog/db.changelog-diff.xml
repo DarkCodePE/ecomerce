@@ -1,114 +1,13 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
-    <changeSet author="nexus (generated)" id="1626475868837-1">
-        <createTable tableName="user_authority">
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_authority_pkey"/>
-            </column>
-            <column name="role_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_authority_pkey"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-2">
-        <createTable tableName="user_device_id">
-            <column name="user_device_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_device_id_pkey"/>
-            </column>
-            <column name="device_id" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="device_type" type="VARCHAR(255)"/>
-            <column name="is_refresh_active" type="BOOLEAN"/>
-            <column name="notification_token" type="VARCHAR(255)"/>
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-3">
-        <createTable tableName="refresh_token">
-            <column name="token_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="refresh_token_pkey"/>
-            </column>
-            <column name="expiry_dt" type="TIMESTAMP WITHOUT TIME ZONE">
-                <constraints nullable="false"/>
-            </column>
-            <column name="refresh_count" type="BIGINT"/>
-            <column name="token" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="user_device_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-4">
-        <createIndex indexName="uk_idu2ippaks8bn6vcsq62khvdu" tableName="email_verification_token" unique="true">
-            <column name="token"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-5">
-        <addUniqueConstraint columnNames="sku" constraintName="uk_q1mafxn973ldq80m1irp3mpvq" tableName="product"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-6">
-        <createIndex indexName="uk_qka6vxqdy1dprtqnx9trdd47c" tableName="product" unique="true">
-            <column name="title"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-7">
-        <createIndex indexName="uk_p4ksw3dweftlkig5mtd3onr9a" tableName="password_reset_token" unique="true">
-            <column name="token_name"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-8">
-        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_authority" constraintName="fkash3fy9hdayq3o73fir11n3th" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-9">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fkhi46vu7680y1hwvmnnuh4cybx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-10">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_device_id" constraintName="fkfgqvlxm4690pgso8t9cm6bc5l" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-11">
-        <addForeignKeyConstraint baseColumnNames="user_device_id" baseTableName="refresh_token" constraintName="fkj96ic7ojqb1d3qaioveqkp18r" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_device_id" referencedTableName="user_device_id" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-12">
-        <createIndex indexName="uk_8ogx3ejsbfbf2xsgl4758otrm" tableName="refresh_token" unique="true">
-            <column name="user_device_id"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-13">
-        <createIndex indexName="uk_r4k4edos30bx9neoq81mdvwph" tableName="refresh_token" unique="true">
-            <column name="token"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-14">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="email_verification_token" constraintName="fkknax5in7pcatm2uf9uyple35x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-15">
-        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product" constraintName="fk5cypb0k23bovo3rn1a5jqs6j4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_category" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-16">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="password_reset_token" constraintName="fk83nsrttkwkb6ym0anu051mtxn" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-17">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="email_token_seq" startValue="1"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-18">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-19">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="product_seq" startValue="1"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-20">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="pwd_reset_token_seq" startValue="1"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-21">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="refresh_token_seq" startValue="1"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-22">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="user_device_seq" startValue="1"/>
-    </changeSet>
-    <changeSet author="nexus (generated)" id="1626475868837-23">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="user_seq" startValue="1"/>
+    <changeSet author="nexus (generated)" id="1626560235460-1">
+        <insert tableName="roles">
+            <column name="role_id" valueNumeric="2"/>
+            <column name="role_name" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_id" valueNumeric="3"/>
+            <column name="role_name" value="ROLE_ADMIN"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
